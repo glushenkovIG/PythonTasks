@@ -1,0 +1,6 @@
+input = open('input.txt', 'r')
+output = open('output.txt', 'w')
+a = input.read().rstrip()
+print(a[::-1], end = '', file = output)
+input.close()
+output.close()

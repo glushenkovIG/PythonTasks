@@ -1,0 +1,15 @@
+class Date:
+    __slots__ = ['__day', '__month', '__year']
+
+    def __init__(self, x = 0):
+        self.__day, self.__month, self.__year = x.split('.')
+
+    def __str__(self):
+        return str(MonthNames[int(self.__month)] + ' ' + str(int(self.__day)) + ', ' + str(int(self.__year)))
+
+
+MonthNames = ('', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December')
+DayOfTheWeek = ('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')
+MonthNums = {'January': 1, 'February': 2, 'March': 3, 'April': 4, 'May': 5, 'June': 6, 'July': 7, 'August': 8, 'September': 9, 'Oktober': 10, 'Nowember': 11, 'Desember': 12}
+Months = (0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+print(Date(str(input())))

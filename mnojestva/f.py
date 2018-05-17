@@ -1,0 +1,5 @@
+input = open('input.txt', 'r')
+output = open('output.txt', 'w')
+print(len(set(input.read().split())), file = output)
+input.close()
+output.close()

@@ -1,0 +1,67 @@
+class Time:
+    __slots__ = ['__hour', '__min', '__sec']
+
+    def __init__(self, h = 0, m = 0, s = 0):
+        if type(h) == str:
+            self.__hour, self.__min, self.__sec = map(int, h.split(':'))
+        elif type(h) == list:
+            self.__hour, self.__min = map(int, h)
+        else:
+            self.__hour, self.__min, self.__sec = 0, 0, 0
+
+    def Second(self):
+        return self.__hour * 60 * 60 + self.__min * 60 + self.__sec
+
+    def Timer(self, n):
+        sec = (self.__sec + n % (60 * 60) % 60)
+        min = (self.__min + n % (60 * 60) // 60)
+        hour = (self.__hour + n // (60 * 60))
+        self.__sec = sec % 60
+        self.__min = (min + sec // 60) % 60
+        self.__hour = (hour + (min + sec // 60) // 60) % 24
+        return self
+
+    def HowLong(self, other):
+        n = other.Second() - self.Second()
+        sleep = Time()
+        sec = (n % (60 * 60) % 60)
+        min = (n % (60 * 60) // 60)
+        hour = (n // (60 * 60))
+        sleep.__sec = sec % 60
+        sleep.__min = (min + sec // 60) % 60
+        sleep.__hour = (hour + (min + sec // 60) // 60) % 24
+        return sleep
+
+    def Alarm(d, self):
+        for i in range(int(input())):
+            day, time = input().split()
+            day = int(day)
+            d_ = day
+            time = Time(time.split(':'))
+            min_min = 10 ** 10
+            if day != 0 or (time.__hour > self.__hour or (time.__hour == self.__hour and time.__min > self.__min)):
+                if min_min > (d + day) * 24 * 60 + time.__hour * 60 + time.__min:
+                    min_min = (d + day) * 24 * 60 + time.__hour * 60 + time.__min
+                    print(min_min)
+            elif time.__hour == self.__hour and time.__min == self.__min:
+                return d, self.__hour + ':' + self.__min
+            elif min_min > (d + 1) * 24 * 60 + time.__hour * 60 + time.__min:
+                    min_min = (d + 1) * 24 * 60 + time.__hour * 60 + time.__min
+                    (d + 1) * 24 * 60 + time.__hour * 60 + time.__min
+                    print(min_min)
+        day = (min_min // (24 * 60)) - d_
+        print(day)
+        if day == 0:
+            day = 7
+        other = Time()
+        other.__hour = min_min % (24 * 60) // 60
+        other.__min = min_min % (24 * 60) % 60
+        return str(day) + ' ' + str(other)
+
+    def __str__(self):
+        return str(self.__hour).rjust(2, '0') + ':' + str(self.__min).rjust(2, '0')
+
+
+a, b = input().split()
+b = Time(b.split(':'))
+print(Time.Alarm(int(a), b))

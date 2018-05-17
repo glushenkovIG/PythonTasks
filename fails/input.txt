@@ -1,0 +1,6 @@
+Ivanov sergey 13 45
+Sergeev petr 13 45 
+Sergeev anderey 20 55
+Petrov vasiliy 20 55
+Ivanov roman 70 40
+Ivanov ivan 70 60

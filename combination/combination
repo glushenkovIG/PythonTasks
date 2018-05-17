@@ -1,0 +1,9 @@
+def Seqence(n, A = ''):
+    if n:
+        for i in range(k):
+            Seqence(n - 1, A + str(i))
+    else:
+        print(' '.join(A))
+n, k = input().split()
+k = int(k)
+Seqence(int(n))

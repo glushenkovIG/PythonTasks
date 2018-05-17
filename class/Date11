@@ -1,0 +1,48 @@
+class Date:
+    __slots__ = ['__day', '__month', '__year']
+
+    def __init__(self, x = ''):
+            self.__day, self.__month, self.__year = 0, 0, 0
+
+    def MonDig(x):
+            self = Date()
+            self.__month, self.__day = x.split()
+            d, m, y = int(self.__day), int(MonthNums[self.__month]), int(self.__year)
+            i = 0
+            days = d
+            while i < m:
+                days += Months[i]
+                i += 1
+            return days
+
+    def Birsday(self, other):
+        d = int(self.__day)
+        m = int(self.__month)
+        y = int(self.__year)
+        d_b = int(other.__day)
+        m_b = int(other.__month)
+        y_b = int(other.__year)
+        days = 0
+        while d != d_b and m != m_b:
+            if d + 1 <= Months[m]:
+                d += 1
+            elif d == 31 and m == 12:
+                y += 1
+                m = 1
+            elif d != 29 and (m == 2 and (y % 4 == 0 and y % 100 != 0) or y % 400 == 0):
+                d += 1
+            else:
+                d = 1
+                m += 1
+            days += 1
+        return days
+
+    def __init__(self, x = ''):
+        self.__day, self.__month, self.__year = 0, 0, 0
+
+MonthNames = ('', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December')
+DayOfTheWeek = ('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')
+MonthNums = {'January': 1, 'February': 2, 'March': 3, 'April': 4, 'May': 5, 'June': 6, 'July': 7, 'August': 8, 'September': 9, 'October': 10, 'November': 11, 'December': 12}
+Months = (0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+print(Date.MonDig(input()))
+

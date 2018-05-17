@@ -1,0 +1,8 @@
+def Seqence(n, A = ''):
+    if not n:
+        print(A)
+    else:
+        Seqence(n - 1, A + '(')
+        Seqence(n - 1, A + ')')
+n = int(input())
+Seqence(n)
